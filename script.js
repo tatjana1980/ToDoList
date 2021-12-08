@@ -1,6 +1,5 @@
 // подготовим пустой массив для сбора заданий
 let arrayOfTask = [];
-let cardDoList = document.querySelector('.card-do-list');
 
 // создаем блок для хранения задания
 // для сортировки
@@ -22,15 +21,6 @@ const createTaskList = () => {
    `);
 };
 
-// заполняем массив новыми заданиями
-// function addTask() {
-//     let elemArray = document.querySelectorAll('add-task').value;
-//     elemArray.forEach(item =>{
-//         arrayOfTask.push(item);
-//     })
-
-//     console.log(arrayOfTask);
-// }
 function createArrayOfTask() {
     let elemarrayOfTask = document.querySelectorAll('.add-task');
     arrayOfTask = [];
@@ -40,10 +30,9 @@ function createArrayOfTask() {
     // console.log(arrayOfTask);
 }
 
-
-
 // добавляем пустую задачу
 let buttonAddTask = document.querySelector('.button-add-task');
+let cardDoList = document.querySelector('.card-do-list');
 
 buttonAddTask.addEventListener("click", (event) => {
 
@@ -55,7 +44,6 @@ buttonAddTask.addEventListener("click", (event) => {
         createArrayOfTask();
         // displayTasksList();
     }
-
     // console.log(arrayOfTask);
     // console.log(arrayOfTask.length);
 });
@@ -101,7 +89,7 @@ function sortTaskAbc() {
     console.log(arrayOfTask);
 };
 
-// сортировка по алфавиту по убыванию
+// сортировка по убыванию
 function sortTaskCba() {
     createArrayOfTask();
     arrayOfTask.reverse();
@@ -117,50 +105,15 @@ function sortTaskCba() {
     console.log(arrayOfTask);
 };
 
-
-// if (flagSortUp) {
-//     buttonSort.style.backgroundImage = 'url(image/sort_up.svg)';
-//     flagSortUp = false;
-//     arrayOfTask.sort();
-//     displayTasksList();
-// } else {
-//     buttonSort.style.backgroundImage = 'url(image/sort_down.svg)';
-//     flagSortUp = true;
-//     arrayOfTask.sort().reverse();
-//     displayTasksList();
-// }
-
 // работа кнопки сортировки
 buttonSort.addEventListener('click', (event) => {
     if (flagSortUp) {
         event.preventDefault();
         sortTaskAbc();
-        // createArrayOfTask();
-        // firstClick = false;
-        // sort();
         console.log(flagSortUp);
     } else {
         event.preventDefault();
         sortTaskCba();
         console.log(flagSortUp);
     }
-
-//     // изменение фона кнопки сортировки при отведении курсора
-//     buttonSort.addEventListener('mouseout', () => {
-//         if (flagSortUp) {
-//             buttonSort.style.backgroundImage = 'url(image/sort_down_light.svg)';
-//         } else {
-//             buttonSort.style.backgroundImage = 'url(image/sort_up_light.svg)';
-//         }
-//     });
-
-//     // изменение фона кнопки сортировки при наведении курсора
-//     buttonSort.addEventListener('mouseover', () => {
-//         if (flagSortUp) {
-//             buttonSort.style.backgroundImage = 'url(image/sort_down.svg)';
-//         } else {
-//             buttonSort.style.backgroundImage = 'url(image/sort_up.svg)';
-//         }
-//     });
-
 });
