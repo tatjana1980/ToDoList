@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;600;900&display=swap');
+ 
+body {
+    font-family: Roboto, Verdana, Arial, Helvetica, sans-serif;
+    /* font-size: 16px; */
+    box-sizing: border-box;
+}
+
+.container{
+    width: 336px;
+    border: 1px solid #C4C4C4;
+    /* box-sizing: border-box; */
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    /* height: 100px; */
+}
+
+.yellow-line{
+    width: 336px;
+    width: 336px;
+    height: 28px;
+    border-radius: 10px 10px 0 0;
+    background-color: #FFDC40;
+    box-sizing: border-box; 
+}
+
+h1{
+    font-style: normal;
+    font-weight: 900;
+    font-size: 26px;
+    line-height: 30px;
+    text-align: center;
+    text-transform: capitalize;
+    margin: 13px 0 16px 0;
+}
+
+.button-sort-wripper{
+    display: flex;
+}
+
+.button-sort{
+    border: none; 
+    width: 25px;
+    height: 15px;
+    background-image: url(image/sort_down_light.svg);
+    background-color: white;
+    margin: 0 30px 11px auto;
+}
+
+.button-sort:hover{
+    background-image: url(image/sort_down.svg);
+} 
+
+.card-do-list{
+    width: 286px;
+    border: 1px solid #C4C4C4;
+    box-sizing: border-box;
+    border-radius: 10px;
+    margin: 0 auto 18px auto;
+}
+
+.task-list{
+    width: 230px;
+    /* display: flex; */
+    margin: auto;
+    padding: 5px 0;
+    /* display: none; */
+}
+
+.add-task-list{
+    width: 230px;
+    display: flex;
+    margin: auto;
+    padding: 5px 0;
+}
+.add-task {
+    font-size: 14px;
+    line-height: 16px;
+    outline: none;
+    border: none;
+    border: solid 1px #C4C4C4;
+    }
+.button-remove-task, .button-remove{
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    background-image: url(image/clear_light.svg);
+    border: none; 
+    margin: 0 0 0 auto;
+    background-repeat: no-repeat;
+}
+
+.button-remove-task:hover, .button-remove:hover{
+    background-image: url(image/clear_purple.svg);
+}
+
+.task-text{
+    font-size: 14px;
+    line-height: 16px;
+    margin: 0;
+    /* list-style-type: none; */
+}
+
+.button-add{
+    display: flex;
+}
+
+.button-add-task{
+    width: 150px;
+    height: 42px;
+    background-color: white;
+    background-image: url(image/add_purple.svg);
+    border: none; 
+    margin: 0 auto 19px auto;
+}
+
+.button-add-task:hover{
+    background-image: url(image/add_purple_light.svg);
+}
