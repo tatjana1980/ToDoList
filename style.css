@@ -121,3 +121,8 @@ h1{
 .button-add-task:hover{
     background-image: url(image/add_purple_light.svg);
 }
+
+/* прозрачность фона выбранного элемента */
+.selected {
+    opacity: 0.6;
+  }

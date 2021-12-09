@@ -5,7 +5,7 @@ let arrayOfTask = [];
 // для сортировки
 const createTaskListSort = (item) => {
     return (`
-        <div class="add-task-list">
+        <div class="add-task-list" draggable="true">
             <input class="add-task" value = ${item}>
             <button class="button-remove"></button>
         </div>
@@ -14,7 +14,7 @@ const createTaskListSort = (item) => {
 // для пустых input
 const createTaskList = () => {
     return (`
-        <div class="add-task-list">
+        <div class="add-task-list" draggable="true">
             <input class="add-task" value = "">
             <button class="button-remove"></button>
         </div>
@@ -40,7 +40,7 @@ buttonAddTask.addEventListener("click", (event) => {
     cardDoList.insertAdjacentHTML("beforeend", createTaskList());
 
     if (arrayOfTask.length > 0) {
-       
+
         createArrayOfTask();
         // displayTasksList();
     }
@@ -117,3 +117,70 @@ buttonSort.addEventListener('click', (event) => {
         console.log(flagSortUp);
     }
 });
+
+// drag & drop
+// Добавим реакцию на начало и конец перетаскивания
+cardDoList.addEventListener(`dragstart`, (evt) => {
+    evt.target.classList.add(`selected`);
+})
+
+cardDoList.addEventListener(`dragend`, (evt) => {
+    evt.target.classList.remove(`selected`);
+});
+
+//   Реализуем логику перетаскивания
+cardDoList.addEventListener(`dragover`, (evt) => {
+    // Разрешаем сбрасывать элементы в эту область
+    evt.preventDefault();
+
+    // Находим перемещаемый элемент
+    const activeElement = cardDoList.querySelector(`.selected`);
+    // Находим элемент, над которым в данный момент находится курсор
+    const currentElement = evt.target;
+    // Проверяем, что событие сработало:
+    // 1. не на том элементе, который мы перемещаем,
+    // 2. именно на элементе списка
+    const isMoveable = activeElement !== currentElement &&
+        currentElement.classList.contains(`add-task-list`);
+
+    // Если нет, прерываем выполнение функции
+    if (!isMoveable) {
+        return;
+    }
+
+
+    // evt.clientY — вертикальная координата курсора в момент,
+    // когда сработало событие
+    const nextElement = getNextElement(evt.clientY, currentElement);
+
+    // Проверяем, нужно ли менять элементы местами
+    if (
+        nextElement &&
+        activeElement === nextElement.previousElementSibling ||
+        activeElement === nextElement
+    ) {
+        // Если нет, выходим из функции, чтобы избежать лишних изменений в DOM
+        return;
+    }
+
+    // Вставляем activeElement перед nextElement
+    cardDoList.insertBefore(activeElement, nextElement);
+});
+
+//   Учтём положение курсора относительно центра
+const getNextElement = (cursorPosition, currentElement) => {
+    // Получаем объект с размерами и координатами
+    const currentElementCoord = currentElement.getBoundingClientRect();
+    // Находим вертикальную координату центра текущего элемента
+    const currentElementCenter = currentElementCoord.y + currentElementCoord.height / 2;
+
+    // Если курсор выше центра элемента, возвращаем текущий элемент
+    // В ином случае — следующий DOM-элемент
+    const nextElement = (cursorPosition < currentElementCenter) ?
+        currentElement :
+        currentElement.nextElementSibling;
+
+    return nextElement;
+};
+
+
